@@ -50,7 +50,7 @@ var uploader = {
 
 	}
 
-/*	function openFileDialog() {
+	function openFileDialog() {
 
 		var fileUploader = document.querySelector('.file-uploader');
 
