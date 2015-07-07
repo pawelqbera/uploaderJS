@@ -9,8 +9,7 @@ body {
 	box-sizing: border-box;
 }
 
-header {
-	background: #fff;
+.header {
 	padding: 45px 1%;
 	border-bottom: 4px solid #4bbaf7;
 }
@@ -92,4 +91,8 @@ section {
 		{
 			background: #dd7676;
 			border: 1px solid #dd7676;
+		}
+
+		.pseudo-file-input {
+			display: none;
 		}

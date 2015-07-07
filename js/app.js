@@ -1,181 +1,201 @@
+(function(){
+	'use strict';
 
-var uploader = {
+	/**
+	* Sets up a new UploaderJS
+	*/
 
-	uploadBtn : document.querySelector('#upload-btn'),
-	dropArea: document.querySelector('.droper');
+	var Uploader = function() {
+		this.view = new View();
+		this.controller = new Controller(this.view);
+	};
+
+	var uploader = new Uploader();
 
 
-	//Event Listeners
 
-	uploadBtn.addEventListener('click', function () {
+})();
 
-		openFileDialog();
 
-	});
 
-	// drag and drop
 
-	dropArea.addEventListener('drop', function (ev) {
+// var uploader = {
 
-		ev.preventDefault();		
-		var data = ev.dataTransfer.getData("text");		
-		ev.target.appendChild(document.getElementById(data));
+// 	uploadBtn : document.querySelector('#upload-btn'),
+// 	dropArea: document.querySelector('.droper');
 
-	});   
 
-	dropArea.addEventListener('dragover', function (ev) {
+// 	//Event Listeners
+
+// 	uploadBtn.addEventListener('click', function () {
+
+// 		openFileDialog();
+
+// 	});
+
+// 	// drag and drop
+
+// 	dropArea.addEventListener('drop', function (ev) {
+
+// 		ev.preventDefault();		
+// 		var data = ev.dataTransfer.getData("text");		
+// 		ev.target.appendChild(document.getElementById(data));
+
+// 	});   
+
+// 	dropArea.addEventListener('dragover', function (ev) {
 		
-		allowDrop(ev);
+// 		allowDrop(ev);
 	
-	});
+// 	});
 
-	function allowDrop(ev) {
+// 	function allowDrop(ev) {
 		
-		ev.preventDefault();
+// 		ev.preventDefault();
 	
-	}
+// 	}
 
-	//Utils
+// 	//Utils
 
-	function createElement (tag) {
+// 	function createElement (tag) {
 
-		el = document.createElement(tag);
+// 		el = document.createElement(tag);
 
-		return el;
-	}
+// 		return el;
+// 	}
 
-	//Functions
+// 	//Functions
 
-	function drop(ev) {
+// 	function drop(ev) {
 
-	}
+// 	}
 
-	function openFileDialog() {
+// 	function openFileDialog() {
 
-		var fileUploader = document.querySelector('.file-uploader');
+// 		var fileUploader = document.querySelector('.file-uploader');
 
-		var pseudoContainer = createElement('div');
+// 		var pseudoContainer = createElement('div');
 
-		pseudoContainer.setAttribute("id", "pseudo-container");
+// 		pseudoContainer.setAttribute("id", "pseudo-container");
 
-		fileUploader.appendChild(pseudoContainer);
+// 		fileUploader.appendChild(pseudoContainer);
 
-		pseudoContainer.innerHTML += '<input type="file" style="display:none" id="pseudoFileInput" multiple />';
+// 		pseudoContainer.innerHTML += '<input type="file" style="display:none" id="pseudoFileInput" multiple />';
 
-		document.querySelector('#pseudoFileInput').click();
+// 		document.querySelector('#pseudoFileInput').click();
 
-		listenForFileChange();
+// 		listenForFileChange();
 
-	} 
+// 	} 
 
-	function listenForFileChange() {
+// 	function listenForFileChange() {
 
-		var fileBtn = document.querySelector('#pseudoFileInput');
+// 		var fileBtn = document.querySelector('#pseudoFileInput');
 
-		fileBtn.addEventListener('change', function () {
+// 		fileBtn.addEventListener('change', function () {
 
-			uploadImage(fileBtn);
+// 			uploadImage(fileBtn);
 
-		});
+// 		});
 
-	} 
+// 	} 
 
-	function uploadImage(file) {
+// 	function uploadImage(file) {
 
-		removeFileInput();
+// 		removeFileInput();
 
-		for (i = 0; i < 3; i++) {
+// 		for (i = 0; i < 3; i++) {
 			
-			renderImage(file.files[i]);
+// 			renderImage(file.files[i]);
 
-		}
+// 		}
 
-	} 
+// 	} 
 
-	function removeFileInput() {
+// 	function removeFileInput() {
 
-		var pseudoContainer = document.querySelector('#pseudo-container');
+// 		var pseudoContainer = document.querySelector('#pseudo-container');
 
-		var fileUploader = document.querySelector('.file-uploader');
+// 		var fileUploader = document.querySelector('.file-uploader');
 
-		fileUploader.removeChild(pseudoContainer);
+// 		fileUploader.removeChild(pseudoContainer);
 
-	}  */
+// 	}  */
 
-	function renderImage(file) {
+// 	function renderImage(file) {
 
-		var reader = new FileReader();
+// 		var reader = new FileReader();
 
-		reader.onprogress = imageProgress;
+// 		reader.onprogress = imageProgress;
 		
-		reader.onload = imageLoaded;
+// 		reader.onload = imageLoaded;
 
-		reader.onerror = errorHandler;
+// 		reader.onerror = errorHandler;
 	 
-		reader.readAsDataURL(file);
+// 		reader.readAsDataURL(file);
 
-		function imageProgress(e) {
+// 		function imageProgress(e) {
 
-			if (e.lengthComputable) {
+// 			if (e.lengthComputable) {
 				
-				var loaded = (e.loaded / e.total);
+// 				var loaded = (e.loaded / e.total);
 				
-				if (loaded < 1) {
+// 				if (loaded < 1) {
 
-					document.querySelector('.progress-bar').style.width = (loaded * 200) + "%";
+// 					document.querySelector('.progress-bar').style.width = (loaded * 200) + "%";
 
-				}
-			} 		
+// 				}
+// 			} 		
 
-		}
+// 		}
 
-		function imageLoaded(e) {
+// 		function imageLoaded(e) {
 		
-			document.querySelector('.progress-bar').style.width = 0;
+// 			document.querySelector('.progress-bar').style.width = 0;
 
-			var thumbnailsContainer = document.querySelector('.thumbs-container');
+// 			var thumbnailsContainer = document.querySelector('.thumbs-container');
 
-			url = e.target.result;
+// 			url = e.target.result;
 
-			thumbnailsContainer.innerHTML += ("<img class='thumb' src='" + url + "' />");
+// 			thumbnailsContainer.innerHTML += ("<img class='thumb' src='" + url + "' />");
 
-			listenForThumbClick();
+// 			listenForThumbClick();
 
-			return url;
+// 			return url;
 		
-		}
+// 		}
 
-		function errorHandler(e) {
+// 		function errorHandler(e) {
 
-			if(e.target.error.name == "NotReadableError") {
+// 			if(e.target.error.name == "NotReadableError") {
 			
-			// The file could not be read
+// 			// The file could not be read
 			
-			}
-		}
+// 			}
+// 		}
 
-		function listenForThumbClick() {
+// 		function listenForThumbClick() {
 
-			var thumb = document.querySelector('.thumb');
+// 			var thumb = document.querySelector('.thumb');
 
-			thumb.addEventListener('click', function () {
+// 			thumb.addEventListener('click', function () {
 
-				thumbClick();
+// 				thumbClick();
 
-			});
+// 			});
 
-		}	
+// 		}	
 
-		function thumbClick() {
+// 		function thumbClick() {
 
-			var win = window.open("", "Title", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=580, height=200, top="+(screen.height-400)+", left="+(screen.width-840));
+// 			var win = window.open("", "Title", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=580, height=200, top="+(screen.height-400)+", left="+(screen.width-840));
 			
-			win.document.body.innerHTML = ("<img src='" + url + "' />");
+// 			win.document.body.innerHTML = ("<img src='" + url + "' />");
 
-		}	
+// 		}	
 
-	}
+// 	}
 
-};
+// };
 
-var upload = Object.create(Uploader);
+// var upload = Object.create(Uploader);
