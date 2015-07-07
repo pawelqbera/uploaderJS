@@ -1,0 +1,95 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-size: 15px;
+	font-family: Arial;
+	box-sizing: border-box;
+}
+
+header {
+	background: #fff;
+	padding: 45px 1%;
+	border-bottom: 4px solid #4bbaf7;
+}
+
+section {
+	padding: 45px 1%;
+	background: #666;
+	color: #eee;
+	text-align: center;
+}
+
+	.thumbs-container {
+
+		background: #999;
+		min-height: 200px;
+		width: 100%;
+		overflow: hidden;
+	}
+
+		.thumb {
+			width: 150px;
+			height: 150px;
+			margin: 25px 25px 25px 0;
+			cursor: pointer;
+		}
+
+		.progress-bar
+		{
+			width: 0;
+			height: 5px;
+			background: red;
+		}
+
+	.droper {
+		background: #444;
+		border: 1px solid #404040;
+		box-shadow: 0px 1px 0px 0 #333;
+		border-radius: 12px;
+		margin: 45px 1%;
+		padding: 65px;
+		text-align: center;
+	}
+
+		.droper h2 {
+			color: #666;
+			text-shadow: 0 -1px 1px #000;
+		}
+
+	.droper h2:hover{
+		cursor: default;
+	}		
+
+	.file-uploader {
+		display: inline-block;
+		border-radius: 6px;
+		border: 2px dashed #777;
+		padding: 21px;		
+	}
+
+		.file-uploader span {
+			width: 100%;
+			display: block;
+			line-height: 1.4;
+		}
+
+		.file-uploader input[type="button"] {
+			color: white;
+			background: #f48383;
+			border: 1px solid #f48383;
+			padding: 8px 16px;
+			border-radius: 4px;
+			transition: all ease 0.5s;
+			cursor: pointer;
+		}
+
+		.file-uploader input[type="button"]:hover,
+		.file-uploader input[type="button"]:focus,
+		.file-uploader input[type="button"]:active
+		{
+			background: #dd7676;
+			border: 1px solid #dd7676;
+		}
