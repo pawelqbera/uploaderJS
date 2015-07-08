@@ -4,7 +4,6 @@
 	/**
 	* Sets up the browser's DOM
 	*/
-
 	var View = function(parentId) {
 		this.parentId = parentId;
 

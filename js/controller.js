@@ -15,6 +15,13 @@
 	};
 
 	/**
+	* Configuration
+	*/
+	Controller.Config = {
+		supportedMimeTypes: ['image/png','image/jpg']
+	}
+
+	/**
 	* Fire the click event on a pseudo-file input and open the multiple file dialog 
 	*/
 	Controller.prototype.openFileDialog = function() {
@@ -38,7 +45,9 @@
 	*/
 	Controller.prototype.uploadImage = function(file) {
  		for (var i = 0; i < file.files.length; i++) {			
- 			this.renderImage(file.files[i]);
+ 			var loadedFile = file.files[i];
+
+ 			this.renderImage(loadedFile);					
  		}		
 	};
 
@@ -46,11 +55,32 @@
 	* Instantiates a FileReader() object coresponding to every single uploaded image 
 	*/
 	Controller.prototype.renderImage = function(file) {
+ 		this.file = file;
+
+ 		if(!this.validateTypes(this.file)) {
+ 			return false;
+ 		}
+
  		this.reader = new FileReader();
  		this.reader.onload = this.createThumb;
  		this.reader.onerror = this.errorHandler; 
- 		this.reader.readAsDataURL(file);
+ 		this.reader.readAsDataURL(this.file);
 	};
+
+	/**
+	* Validate if uploaded file has a supported MIME type  
+	*/
+	Controller.prototype.validateTypes = function(file) {
+		this.file = file;
+
+		if(Controller.Config.supportedMimeTypes.indexOf(this.file.type) < 0) {
+			console.warn('This file extension appears to be not supported');
+			return false;
+		} else {
+			console.log('This file extension is supported');
+			return true;
+		}
+	};	
 
 	/**
 	* Creating imgage tags with sources coressponding to all uploaded images 
