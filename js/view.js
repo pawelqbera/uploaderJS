@@ -2,12 +2,17 @@
 	'use strict';
 
 	/**
-	* Sets up the browser's DOM
+	* Check if FileReader API is supported in the browser and sets up the browser's DOM
 	*/
 	var View = function(parentId) {
 		this.parentId = parentId;
-
-		this.buildInterface(this.parentId);
+		
+		if (window.FileReader) {
+		  this.buildInterface(this.parentId);
+		} else {
+		  console.log("The FileReader API is not supported in this browser.");
+		}
+		
 	};
 
 	/**
@@ -23,7 +28,7 @@
 		el.setAttribute("id", this.elementName);
 		el.setAttribute("class", this.elementName);	
 
-		if (typeof this.parentId !== 'undefined') {
+		if (typeof this.parentId !== "undefined") {
 			document.getElementById(this.parentId).appendChild(el);
 		} else {
 			document.body.appendChild(el);

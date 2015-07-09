@@ -122,7 +122,7 @@
 	*/
 	Controller.prototype.thumbnailClick = function() {
 		var url = this.getAttribute("src");
- 		var win = window.open("", "Title", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=580, height=200");		
+ 		var win = window.open("", "Title", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=580, height=720");		
  		win.document.body.innerHTML = ("<img src='" + url + "' />");
  	};
 
